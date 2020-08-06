@@ -12,7 +12,9 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         body: Stack(
-          children: [],
+          children: [
+            TransparentAppBar(),
+          ],
         ),
       ),
     );
