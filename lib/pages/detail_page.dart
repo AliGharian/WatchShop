@@ -37,6 +37,10 @@ class _DetailPageState extends State<DetailPage>
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
     int index = widget.index;
     Size size = MediaQuery.of(context).size;
     setState(() {

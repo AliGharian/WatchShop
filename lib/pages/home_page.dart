@@ -38,6 +38,10 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
