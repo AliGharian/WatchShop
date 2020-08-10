@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_shop/constants.dart';
 import 'package:watch_shop/data.dart';
+import 'package:watch_shop/pages/detail_page.dart';
+import 'package:watch_shop/widgets/app_bar.dart';
 import 'package:watch_shop/widgets/grid_list_tile.dart';
 import 'package:watch_shop/widgets/navigation_menu/ripple_button.dart';
-import 'package:watch_shop/widgets/standard_iconbutton.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -34,31 +36,19 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Color(0x00FFFFFF),
-          elevation: 0.0,
-          title: Center(
-            child: Text(
-              'LOGO',
-              style: TextStyle(color: _state ? Colors.white : kLightBlack),
+        appBar: PreferredSize(
+          preferredSize: AppBar().preferredSize,
+          child: Hero(
+            tag: 'appbar_tag',
+            child: TransparentAppbar(
+              state: _state,
             ),
           ),
-          leading: StandardIconButton(
-            icon: IconData(0xe903, fontFamily: 'custom'),
-            color: _state ? Colors.white : kLightBlack,
-            onPressed: () {},
-          ),
-          actions: [
-            StandardIconButton(
-              icon: IconData(0xe901, fontFamily: 'custom'),
-              color: _state ? Colors.white : kLightBlack,
-              onPressed: () {},
-            ),
-          ],
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(
@@ -72,10 +62,42 @@ class _HomePageState extends State<HomePage>
                 children: List.generate(watchImages.length, (index) {
                   return Container(
                     child: Center(
-                      child: GridListTile(index: index),
+                      child: GridListTile(
+                          index: index,
+                          onTap: () {
+                            // setState(() {
+                            //   detailPageVisibility = true;
+                            // });
+                            Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, animation2) =>
+                                    DetailPage(
+                                  index: index,
+                                ),
+                                transitionsBuilder:
+                                    (context, animation, animation2, child) =>
+                                        FadeTransition(
+                                            opacity: animation, child: child),
+                                transitionDuration: Duration(milliseconds: 500),
+                              ),
+                            );
+                          }),
                     ),
                   );
                 }),
+              ),
+              DummyIconButton(
+                tag: 'FAB3_tag',
+                icon: Icons.bookmark_border,
+              ),
+              DummyIconButton(
+                tag: 'FAB_tag',
+                icon: null,
+              ),
+              DummyIconButton(
+                tag: 'FAB2_tag',
+                icon: Icons.arrow_back,
               ),
               Positioned(
                 bottom: size.height * -0.8,
@@ -98,6 +120,35 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DummyIconButton extends StatelessWidget {
+  final String tag;
+  final IconData icon;
+  DummyIconButton({this.tag, this.icon});
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Positioned(
+      bottom: size.height * 0.16,
+      child: Hero(
+        tag: tag,
+        child: Container(
+          height: size.height * 0.08,
+          width: size.height * 0.08,
+          decoration: BoxDecoration(
+            color: kDarkBrown,
+            borderRadius: BorderRadius.all(Radius.circular(size.height * 0.08)),
+          ),
+          child: Icon(
+            icon,
+            size: 25,
+            color: Colors.white,
           ),
         ),
       ),

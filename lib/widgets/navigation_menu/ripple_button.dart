@@ -50,7 +50,7 @@ class RippleButton extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(size.width * 0.05),
+                    padding: EdgeInsets.all(size.width * 0.08),
                     width: size.height * 0.6,
                     height: size.height * 0.6,
                     child: FlareActor(
@@ -95,7 +95,7 @@ class RippleButton extends StatelessWidget {
                     child: Opacity(
                       opacity: animation.value,
                       child: StandardIconButton(
-                        icon: IconData(0xe902, fontFamily: 'custom'),
+                        icon: const IconData(0xe903, fontFamily: 'custom'),
                         color: Colors.white,
                         onPressed: () {},
                       ),
@@ -106,7 +106,7 @@ class RippleButton extends StatelessWidget {
                     child: Opacity(
                       opacity: animation.value,
                       child: StandardIconButton(
-                        icon: IconData(0xe900, fontFamily: 'custom'),
+                        icon: const IconData(0xe902, fontFamily: 'custom'),
                         color: Colors.white,
                         onPressed: () {},
                       ),

@@ -20,7 +20,7 @@ class AnimatedIconButton extends StatelessWidget {
       ),
       padding: EdgeInsets.all(0.3),
       child: Transform.scale(
-        scale: animation.value < 0.05 ? 30 : 1.0,
+        scale: animation.value < 0.01 ? 30 : 1.0,
         child: IconButton(
           onPressed: state ? onPressed : null,
           icon: AnimatedIcon(
