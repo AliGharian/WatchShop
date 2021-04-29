@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:watch_shop/pages/home_page.dart';
+import 'package:watch_shop/pages/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }
