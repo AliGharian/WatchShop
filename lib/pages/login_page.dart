@@ -14,6 +14,13 @@ class LoginPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              'Login',
+              style: TextStyle(
+                fontSize: 50.0,
+                color: kLightBlack,
+              ),
+            ),
             CustomTextField(
               textHint: 'Enter Your UserName...',
               icon: Icons.person,
