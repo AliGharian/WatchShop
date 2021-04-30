@@ -9,54 +9,58 @@ class SignUpPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kLightGrey,
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Sign Up',
-              style: TextStyle(
-                fontSize: 50.0,
-                color: kLightBlack,
+      body: SingleChildScrollView(
+        child: Container(
+          width: size.width,
+          height: size.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Sign Up',
+                style: TextStyle(
+                  fontSize: 50.0,
+                  color: kLightBlack,
+                ),
               ),
-            ),
-            CustomTextField(
-              textHint: 'Enter Your Email...',
-              icon: Icons.email,
-            ),
-            CustomTextField(
-              textHint: 'Enter Your UserName...',
-              icon: Icons.person,
-            ),
-            CustomTextField(
-              textHint: 'Enter Your Password...',
-              icon: Icons.lock,
-            ),
-            Container(
-              padding: EdgeInsets.all(12.0),
-              width: size.width * 0.6,
-              height: size.height * 0.12,
-              child: RoundButton(
-                title: 'Sign Up',
-                color: kLightBrown,
-                onPressed: () {
-                  //todo: send a request(get or post) to the api
-                },
+              CustomTextField(
+                textHint: 'Enter Your Email...',
+                icon: Icons.email,
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Checkbox(
-                  value: true,
-                  onChanged: (value) {
-                    //todo: should check this field is valid when user pressed the signup button
+              CustomTextField(
+                textHint: 'Enter Your UserName...',
+                icon: Icons.person,
+              ),
+              CustomTextField(
+                textHint: 'Enter Your Password...',
+                icon: Icons.lock,
+              ),
+              Container(
+                padding: EdgeInsets.all(12.0),
+                width: size.width * 0.6,
+                height: size.height * 0.12,
+                child: RoundButton(
+                  title: 'Sign Up',
+                  color: kLightBrown,
+                  onPressed: () {
+                    //todo: send a request(get or post) to the api
                   },
                 ),
-                Text('I agree with terms & conditions'),
-              ],
-            ),
-          ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Checkbox(
+                    value: true,
+                    onChanged: (value) {
+                      //todo: should check this field is valid when user pressed the signup button
+                    },
+                  ),
+                  Text('I agree with terms & conditions'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
